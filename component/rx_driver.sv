@@ -5,10 +5,12 @@ class rx_driver extends uvm_driver #(uart_sequence_item);
 		super.new(name,parent);
 	endfunction
 
+	uvm_analysis_port #(uart_sequence_item) rx_drv_ap;
 	virtual uart_interface vif;
 
 	function void build_phase(uvm_phase phase);
 		super.build_phase(phase);
+		rx_drv_ap = new("rx_drv_ap",this);
 		if(!uvm_config_db#(virtual uart_interface)::get(this,"","vif",vif)) begin
 			`uvm_fatal("rx_driver","no vif")
 		end
@@ -42,6 +44,8 @@ class rx_driver extends uvm_driver #(uart_sequence_item);
 		drive_bit(1'b1);
 
 		drive_idle();
+
+		rx_drv_ap.write(tr);
 	endtask
 
 	virtual task run_phase(uvm_phase phase);

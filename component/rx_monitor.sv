@@ -2,7 +2,7 @@ class rx_monitor extends uvm_monitor;
 	`uvm_component_utils(rx_monitor)
 
 	virtual uart_interface vif;
-	uvm_analysis_port #(uart_sequence_item) rx_ap;
+	uvm_analysis_port #(uart_sequence_item) rx_mon_ap;
 
 	function new(string name = "rx_monitor",uvm_component parent);
 		super.new(name,parent);
@@ -10,7 +10,7 @@ class rx_monitor extends uvm_monitor;
 
 	function void build_phase(uvm_phase phase);
 		super.build_phase(phase);
-		rx_ap = new("rx_ap",this);
+		rx_mon_ap = new("rx_mon_ap",this);
 		if(!uvm_config_db#(virtual uart_interface)::get(this,"","vif",vif)) begin
 			`uvm_fatal("rx_monitor","no vif");
 		end
@@ -25,7 +25,7 @@ class rx_monitor extends uvm_monitor;
 				item = uart_sequence_item::type_id::create("item",this);
 				item.rx_data = vif.mon_cb.RX_DATA;
 
-				rx_ap.write(item);
+				rx_mon_ap.write(item);
 			end
 		end
 	endtask

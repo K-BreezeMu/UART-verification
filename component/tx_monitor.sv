@@ -2,7 +2,7 @@ class tx_monitor extends uvm_monitor;
 	`uvm_component_utils(tx_monitor)
 
 	virtual uart_interface vif;
-	uvm_analysis_port #(uart_sequence_item) tx_ap;
+	uvm_analysis_port #(uart_sequence_item) tx_mon_ap;
 	
 	function new(string name = "tx_monitor",uvm_component parent);
 		super.new(name, parent);
@@ -10,7 +10,7 @@ class tx_monitor extends uvm_monitor;
 
 	function void build_phase(uvm_phase phase);
 		super.build_phase(phase);
-		tx_ap = new("tx_ap",this);
+		tx_mon_ap = new("tx_mon_ap",this);
 		if(!uvm_config_db#(virtual uart_interface)::get(this,"","vif",vif)) begin
 			`uvm_fatal("tx_monitor","no vif");
 		end
@@ -32,7 +32,7 @@ class tx_monitor extends uvm_monitor;
 			item.tx_busy = vif.mon_cb.TX_BUSY;
 			item.tx_data_obs = data;
 			
-			tx_ap.write(item);
+			tx_mon_ap.write(item);
 			end
 		end
 		endtask
