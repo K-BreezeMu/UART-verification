@@ -1,0 +1,78 @@
+# vsim -c tb_top_opt "+UVM_TESTNAME=rx_test" -do "run -all; quit -f" -l D:/ROAD/learn/UART_verification/rx_test.log 
+# Start time: 11:36:36 on Oct 14,2026
+# //  Questa Sim-64
+# //  Version 10.7c win64 Aug 18 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.uart_interface(fast)
+# Loading mtiUvm.uvm_pkg
+# Loading work.uart_pkg(fast)
+# Loading work.tb_top_sv_unit(fast)
+# Loading work.tb_top(fast)
+# Loading work.uart_interface(fast)
+# Loading work.uart(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# Loading D:/questa/uvm-1.1d\win64\uvm_dpi.dll
+# run -all
+# ----------------------------------------------------------------
+# UVM-1.1d
+# (C) 2007-2013 Mentor Graphics Corporation
+# (C) 2007-2013 Cadence Design Systems, Inc.
+# (C) 2006-2013 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(215) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(216) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# UVM_INFO @ 0: reporter [RNTST] Running test rx_test...
+# UVM_INFO D:/ROAD/learn/UART_verification/component/uart_scoreboard.sv(84) @ 350000: uvm_test_top.env.scoreboard [scb_rx] [PASS] exp=0x55 act=0x55
+# UVM_INFO D:/ROAD/learn/UART_verification/component/uart_scoreboard.sv(84) @ 670000: uvm_test_top.env.scoreboard [scb_rx] [PASS] exp=0xff act=0xff
+# UVM_INFO D:/ROAD/learn/UART_verification/component/uart_scoreboard.sv(84) @ 990000: uvm_test_top.env.scoreboard [scb_rx] [PASS] exp=0xaa act=0xaa
+# UVM_INFO D:/ROAD/learn/UART_verification/component/uart_scoreboard.sv(84) @ 1310000: uvm_test_top.env.scoreboard [scb_rx] [PASS] exp=0xff act=0xff
+# UVM_INFO D:/ROAD/learn/UART_verification/component/uart_scoreboard.sv(84) @ 1630000: uvm_test_top.env.scoreboard [scb_rx] [PASS] exp=0x55 act=0x55
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 1711000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO D:/ROAD/learn/UART_verification/component/uart_scoreboard.sv(96) @ 1711000: uvm_test_top.env.scoreboard [SCB] ------------------------SCB Report-----------------------------
+# UVM_INFO D:/ROAD/learn/UART_verification/component/uart_scoreboard.sv(97) @ 1711000: uvm_test_top.env.scoreboard [SCB]   TX: PASS=0, FAIL=0, Leftover exp=0, act=0
+# UVM_INFO D:/ROAD/learn/UART_verification/component/uart_scoreboard.sv(99) @ 1711000: uvm_test_top.env.scoreboard [SCB]   RX: PASS=5, FAIL=0, Leftover exp=0, act=0
+# UVM_INFO D:/ROAD/learn/UART_verification/component/uart_scoreboard.sv(101) @ 1711000: uvm_test_top.env.scoreboard [SCB] --------------------------------------------------------------
+# 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :   13
+# UVM_WARNING :    0
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [Questa UVM]     2
+# [RNTST]     1
+# [SCB]     4
+# [TEST_DONE]     1
+# [scb_rx]     5
+# ** Note: $finish    : D:/questa/win64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+#    Time: 1711 ns  Iteration: 54  Instance: /tb_top
+# End time: 11:36:37 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

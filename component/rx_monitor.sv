@@ -18,15 +18,18 @@ class rx_monitor extends uvm_monitor;
 
 	virtual task run_phase(uvm_phase phase);
 		uart_sequence_item item;
+		bit prev_rx_ready;
+		prev_rx_ready = vif.mon_cb.RX_READY;
 
 		forever begin
 			@(vif.mon_cb);
-			if($rose(vif.mon_cb.RX_READY)) begin
+			if(prev_rx_ready == 1'b0 && vif.mon_cb.RX_READY == 1'b1) begin
 				item = uart_sequence_item::type_id::create("item",this);
 				item.rx_data = vif.mon_cb.RX_DATA;
 
 				rx_mon_ap.write(item);
 			end
+			prev_rx_ready = vif.mon_cb.RX_READY;
 		end
 	endtask
 endclass

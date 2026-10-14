@@ -1,5 +1,5 @@
 package uart_pkg;
-	import uvm_pkg;
+	import uvm_pkg::*;
 	`include "uvm_macros.svh"
 
 	`include "uart_sequence_item.sv"
@@ -17,5 +17,10 @@ package uart_pkg;
 	`include "rx_subscriber.sv"
 
 	`include"uart_env.sv"
+
+	`include"rx_sequence.sv"
+	`include"rx_test.sv"
+	`include"tx_sequence.sv"
+	`include"tx_test.sv"
 endpackage
-	'
+	

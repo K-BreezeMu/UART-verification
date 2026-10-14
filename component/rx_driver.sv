@@ -34,8 +34,8 @@ class rx_driver extends uvm_driver #(uart_sequence_item);
 	endtask
 
 	virtual task drive(uart_sequence_item tr);
-		wait(vif.drv_cb.RX_READY == 1'b1 || vif.drv_cb.RST_n == 1'b0);
 		drive_bit(1'b0);
+		@(vif.drv_cb);
 		
 		for(int i=0;i<8;i++) begin
 			drive_bit(tr.rx_load[i]);
@@ -43,9 +43,9 @@ class rx_driver extends uvm_driver #(uart_sequence_item);
 
 		drive_bit(1'b1);
 
-		drive_idle();
-
 		rx_drv_ap.write(tr);
+
+		repeat(5) @(vif.drv_cb);
 	endtask
 
 	virtual task run_phase(uvm_phase phase);

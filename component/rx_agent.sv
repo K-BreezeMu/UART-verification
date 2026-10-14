@@ -1,9 +1,9 @@
 class rx_agent extends uvm_agent;
 	`uvm_component_utils(rx_agent)
 
-	uart_sequencer sequenecr;
+	uart_sequencer sequencer;
 	rx_driver driver;
-	tx_monitor monitor;
+	rx_monitor monitor;
 	
 	function new(string name = "rx_agent",uvm_component parent);
 		super.new(name,parent);
@@ -16,7 +16,7 @@ class rx_agent extends uvm_agent;
 			driver = rx_driver::type_id::create("driver",this);
 			sequencer = uart_sequencer::type_id::create("sequencer",this);
 		end
-		monitor=rx_monitor_type_id::create("monitor",this);
+		monitor=rx_monitor::type_id::create("monitor",this);
 	endfunction
 
 	function void connect_phase(uvm_phase phase);

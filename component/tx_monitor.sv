@@ -18,22 +18,31 @@ class tx_monitor extends uvm_monitor;
 
 	virtual task run_phase(uvm_phase phase);
 		uart_sequence_item item;
+		bit prev_tx;
+		bit prev_tx_busy;
 		bit [7:0] data;	
+		
+		
+		prev_tx = vif.mon_cb.TX;
+		prev_tx_busy = vif.mon_cb.TX_BUSY;
 		forever begin
 			@(vif.mon_cb);
-			if($fell(vif.mon_cb.TX)) begin
-				for(int i=0;i<8;i++)
+			if(prev_tx == 1'b1 && vif.mon_cb.TX == 1'b0) begin
+				for(int i=0;i<8;i++) 
+				begin
 				@(vif.mon_cb);
 				data[i]=vif.mon_cb.TX;
+				end
+				prev_tx = vif.mon_cb.TX;
 			end	
-			if($fell(vif.mon_cb.TX_BUSY)) begin
-			
+			if(prev_tx_busy == 1'b1 && vif.mon_cb.TX_BUSY == 1'b0) 
+			begin
 			item = uart_sequence_item::type_id::create("item",this);
 			item.tx_busy = vif.mon_cb.TX_BUSY;
 			item.tx_data_obs = data;
-			
 			tx_mon_ap.write(item);
 			end
+			prev_tx_busy = vif.mon_cb.TX_BUSY;
 		end
 		endtask
 endclass

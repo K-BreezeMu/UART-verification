@@ -5,12 +5,12 @@ class tx_driver extends uvm_driver #(uart_sequence_item);
 		super.new(name,parent);
 	endfunction
 
-	uvm_analysis_port #(uvm_sequence_item) rx_drv_ap;
+	uvm_analysis_port #(uart_sequence_item) tx_drv_ap;
 	virtual uart_interface vif;
 
 	function void build_phase(uvm_phase phase);
 		super.build_phase(phase);
-		rx_drv_ap = new("rx_drv_ap",this);
+		tx_drv_ap = new("tx_drv_ap",this);
 		if(!uvm_config_db#(virtual uart_interface)::get(this,"","vif",vif)) begin
 			`uvm_fatal("tx_driver","no vif")
 		end
@@ -31,7 +31,7 @@ class tx_driver extends uvm_driver #(uart_sequence_item);
 
 	virtual task drive(uart_sequence_item tr);
 		wait(vif.drv_cb.TX_BUSY == 1'b0);
-
+		
 		@(vif.drv_cb);
 		vif.drv_cb.TX_DATA <= tr.tx_data;
 		vif.drv_cb.TX_START <= 1'b1;
@@ -39,7 +39,7 @@ class tx_driver extends uvm_driver #(uart_sequence_item);
 		@(vif.drv_cb);
 		vif.drv_cb.TX_START <= 1'b0;
 
-		rx_drv_ap.write(tr);
+		tx_drv_ap.write(tr);
 		
 	endtask
 
